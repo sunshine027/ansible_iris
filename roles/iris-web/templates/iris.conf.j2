@@ -1,0 +1,74 @@
+# -*- coding: utf-8 -*-
+
+# This file is part of IRIS: Infrastructure and Release Information System
+#
+# Copyright (C) 2013 Intel Corporation
+#
+# IRIS is free software; you can redistribute it and/or
+# modify it under the terms of the GNU General Public License
+# version 2.0 as published by the Free Software Foundation.
+
+"""
+External Django settings overriders for the IRIS project.
+
+This is a pure Python file read with exec.
+Please set user modes accordingly.
+"""
+
+from os import path
+
+import base64
+import ldap
+from django_auth_ldap.config import LDAPSearch
+
+# UI_AVAILABLE and REST_API_AVAILABLE are IRIS specific flags.
+# Check the main settings file and documentation for usage.
+
+UI_AVAILABLE = True
+REST_API_AVAILABLE = True
+
+DEBUG = False
+TEMPLATE_DEBUG = DEBUG
+
+# These are the common settings for the IRIS project.
+# Please refer to Django documentation for available overrides:
+#   https://docs.djangoproject.com/
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': '{{db_name}}',
+        'USER': '{{db_user}}',
+        'PASSWORD': '{{db_user_password}}',
+        'HOST': '{{db_host}}',
+    }
+}
+
+ALLOWED_HOSTS = ['*']
+TIME_ZONE = 'UTC'
+LANGUAGE_CODE = 'en-us'
+
+{% if ldap_enable %}
+ldap.set_option(ldap.OPT_X_TLS_REQUIRE_CERT, ldap.OPT_X_TLS_NEVER)
+
+AUTH_LDAP_SERVER_URI = "{{ldap_server_uri}}"
+AUTH_LDAP_BIND_DN = "{{ldap_bind_dn}}"
+AUTH_LDAP_BIND_PASSWORDX = "{{ldap_passwordx}}"
+AUTH_LDAP_BIND_PASSWORD = base64.decodestring(AUTH_LDAP_BIND_PASSWORDX)
+AUTH_LDAP_USER_DN_TEMPLATE = "{{ldap_user_dn_template}}"
+
+AUTH_LDAP_USER_ATTR_MAP = {
+    'first_name': 'givenName',
+    'last_name': 'sn',
+    'email': 'mail',
+    }
+
+AUTHENTICATION_BACKENDS = (
+    'django_auth_ldap.backend.LDAPBackend',
+    'django.contrib.auth.backends.ModelBackend',
+)
+{% endif %}
+
+SCM_META_GIT_PATH = "{{scm_meta_git_path}}"
+
+IRIS_PRODUCT_MAPPING = {{iris_product_mapping}}

@@ -1,0 +1,37 @@
+---
+# this is only for 0.1.2, we'll delete it after this release
+- name: install python-South-0.8.4
+  command: zypper install -fy python-South-0.8.4
+
+- name: Install IRIS packages
+  zypper: name="{{item}}" state=latest disable_gpg_check=yes
+  with_items:
+    - iris-core
+    - iris-packagedb
+  notify: restart apache
+
+- template: src=iris.conf.j2 dest=/etc/iris/iris.conf
+    owner=iris group=iris
+  notify: restart apache
+
+# this will never report 'changed' status
+- name: Find IRIS path
+  command: python -c "import os; from iris import manage; print(os.path.dirname(manage.__file__))"
+  register: iris_path
+  changed_when: False
+
+- django_manage: command="{{item}}" app_path="{{iris_path.stdout}}"
+  with_items:
+  - syncdb
+  - migrate
+
+- template: src=apache.conf.j2 dest=/etc/apache2/vhosts.d/iris.conf
+  notify: restart apache
+
+- template: src=listen.conf.j2 dest=/etc/apache2/listen.conf
+     mode=0644 owner=root group=root
+  notify: restart apache
+
+- file: path="{{log_path}}" owner="{{user}}" group=iris mode=0755 state="directory"
+
+- cron: name="update iris data" user="{{user}}" hour="10,14" minute="0" job="/usr/bin/update_iris_data.sh >> {{log_path}}/iris_update.log 2>&1"

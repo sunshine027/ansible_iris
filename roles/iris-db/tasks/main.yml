@@ -1,0 +1,12 @@
+---
+# python-mysql is required by the following mysql_db and mysql_user modules
+- name: ensure python-mysql present
+  sudo: yes
+  zypper: name=python-mysql state=present
+
+- mysql_db: name="{{db_name}}" state=present
+    encoding=utf8 collation=utf8_general_ci
+    login_user="{{db_admin}}" login_password="{{db_admin_password}}"
+- mysql_user: name="{{db_user}}" state=present
+    password="{{db_user_password}}" priv="{{db_name}}".*:ALL host="{{web_host}}"
+    login_user="{{db_admin}}" login_password="{{db_admin_password}}"

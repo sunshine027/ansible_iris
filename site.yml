@@ -1,0 +1,13 @@
+---
+- hosts: iris-dbserver
+  gather_facts: no
+  roles:
+    - iris-db
+
+- hosts: iris-webservers
+  gather_facts: no
+  sudo: yes
+  roles:
+    - apache-mod-wsgi
+    - zypp-repo
+    - iris-web
