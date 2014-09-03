@@ -1,8 +1,4 @@
 ---
-# this is only for 0.1.2, we'll delete it after this release
-- name: install python-South-0.8.4
-  command: zypper install -fy python-South-0.8.4
-
 - name: Install IRIS packages
   zypper: name="{{item}}" state=latest disable_gpg_check=yes
   with_items:

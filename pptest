@@ -1,0 +1,5 @@
+[iris-webservers]
+iris-pptest.fi.intel.com
+
+[iris-dbserver]
+iris-pptest.fi.intel.com

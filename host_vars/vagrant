@@ -1,18 +1,23 @@
 ---
+# Vars for role iris-db
 db_admin: root
-db_admin_password: root
+db_admin_password:
 db_name: testdb
 db_user: testdbuser
 db_user_password: testdbuserpassword
 web_host: localhost
 
+# Vars for role iris-web
 port: 8000
 server_name: openSUSE_131_64
-repo: http://download.tizen.org/iris/archive/0.1.2/openSUSE_13.1/
+repo: http://download.tizen.org/iris/latest-release/openSUSE_13.1/
 db_host: localhost
-db_name: testdb
-db_user: testdbuser
-db_user_password: testdbuserpassword
+# The following three vars are identical with corresponding values
+# above in iris-db role. Since we have them in the same file, we
+# won't redefine them again.
+#db_name:
+#db_user:
+#db_user_password:
 
 user: iris
 log_path: /var/log/iris
@@ -30,3 +35,16 @@ ldap_passwordx: xx
 ldap_user_dn_template: cn=%(user)s,ou=users,dc=tizen
 
 scm_meta_git_path: git://review.tizen.org/scm/meta/git
+
+# Vars for role sysconfig-proxy
+proxy_enabled: True
+http_proxy: http://proxy-mu.intel.com:911
+https_proxy: http://proxy-mu.intel.com:911
+no_proxy: download.otctools.jf.intel.com,localhost,127.0.0.1
+
+# Vars for role socks-proxy
+socks_proxy: proxy.jf.intel.com
+socks_port: 1080
+
+# Vars for zypp-repo
+repo_name: Tools_IRIS
