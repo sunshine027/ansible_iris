@@ -1,4 +1,10 @@
 ---
+- name: Add package repository
+  zypper_repository: name=Tools_IRIS repo={{repo}} state=present disable_gpg_check=yes
+
+- name: Refresh package repository
+  command: zypper ref
+
 - name: Install IRIS packages
   zypper: name="{{item}}" state=latest disable_gpg_check=yes
   with_items:

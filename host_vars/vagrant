@@ -45,6 +45,3 @@ no_proxy: download.otctools.jf.intel.com,localhost,127.0.0.1
 # Vars for role socks-proxy
 socks_proxy: proxy.jf.intel.com
 socks_port: 1080
-
-# Vars for zypp-repo
-repo_name: Tools_IRIS

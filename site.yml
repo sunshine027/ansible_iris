@@ -9,5 +9,4 @@
   sudo: yes
   roles:
     - apache-mod-wsgi
-    - zypp-repo
     - iris-web

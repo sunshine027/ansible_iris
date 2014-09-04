@@ -5,8 +5,6 @@ It assume that services such as apache and mysql already setup and config well.
 
 This playbook uses common roles from infrastructure/ansible/roles repository:
 - apache-mod-wsgi: apache web server with mod_wsgi enabled
-- mysqldb: mysql server
-- zypp-repo: install zypper repo file and refresh
 
 There are also 2 local iris-specific roles defined:
 - iris-db: assume iris database is created and proper user exists
