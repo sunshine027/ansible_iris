@@ -6,3 +6,4 @@
     - sysconfig-proxy
     - mysqldb
     - socks-proxy
+    - jenkins-server
