@@ -1,4 +1,8 @@
 ---
+# Using this step to updating IRIS repository. Remove old repo file and add it again which with new repository.
+- name: Remove package repository
+  zypper_repository: name=Tools_IRIS state=absent
+
 - name: Add package repository
   zypper_repository: name=Tools_IRIS repo={{repo}} state=present disable_gpg_check=yes
 
