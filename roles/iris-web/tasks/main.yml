@@ -32,6 +32,9 @@
   - syncdb
   - migrate
 
+- name: Create django cache table
+  django_manage: command=createcachetable cache_table={{cache_table}} app_path="{{iris_path.stdout}}"
+
 - template: src=apache.conf.j2 dest=/etc/apache2/vhosts.d/iris.conf
   notify: restart apache
 

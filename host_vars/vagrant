@@ -12,6 +12,7 @@ port: 8000
 server_name: openSUSE_131_64
 repo: http://download.tizen.org/iris/latest-release/openSUSE_13.1/
 db_host: localhost
+cache_table: iris_views_cache
 # The following three vars are identical with corresponding values
 # above in iris-db role. Since we have them in the same file, we
 # won't redefine them again.

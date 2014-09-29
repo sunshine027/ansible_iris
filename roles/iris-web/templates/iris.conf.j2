@@ -84,3 +84,10 @@ TEMPLATE_LOADERS = (
     )),
     'django.template.loaders.eggs.Loader',
 )
+
+CACHES = {
+    'default': {
+        'BACKEND': 'django.core.cache.backends.db.DatabaseCache',
+        'LOCATION': '{{cache_table}}',
+    }
+}
