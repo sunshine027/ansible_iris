@@ -14,6 +14,7 @@
   with_items:
     - iris-core
     - iris-packagedb
+    - iris-submissions
   notify: restart apache
 
 - template: src=iris.conf.j2 dest=/etc/iris/iris.conf
