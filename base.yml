@@ -4,6 +4,6 @@
   sudo: yes
   roles:
     - sysconfig-proxy
-    - mysqldb
+    - mysql-server
     - socks-proxy
     - jenkins-server
