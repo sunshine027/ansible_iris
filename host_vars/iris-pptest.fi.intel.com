@@ -6,7 +6,7 @@ db_user: testdbuser
 db_user_password: testdbuserpassword
 web_host: localhost
 
-port: 80
+port: 8000
 server_name: iris-pptest.fi.intel.com
 repo: http://download.otctools.jf.intel.com/IRIS:/Devel/openSUSE_13.1/
 db_host: localhost
