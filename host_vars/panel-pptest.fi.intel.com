@@ -13,6 +13,7 @@ db_host: localhost
 db_name: testdb
 db_user: testdbuser
 db_user_password: testdbuserpassword
+cache_table: iris_views_cache
 
 user: iris
 log_path: /var/log/iris
