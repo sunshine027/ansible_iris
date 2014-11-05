@@ -1,0 +1,4 @@
+---
+- name: ensure python-xml present
+  sudo: yes
+  zypper: name=python-xml state=present

@@ -3,6 +3,7 @@
   gather_facts: no
   sudo: yes
   roles:
+    - python-xml
     - sysconfig-proxy
     - mysql-server
     - socks-proxy
