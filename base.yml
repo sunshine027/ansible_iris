@@ -3,8 +3,9 @@
   gather_facts: no
   sudo: yes
   roles:
-    - python-xml
+    # config proxy should be the first thing
     - sysconfig-proxy
+    - python-xml
     - mysql-server
     - socks-proxy
     - jenkins-server
