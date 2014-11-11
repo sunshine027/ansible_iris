@@ -1,0 +1,6 @@
+---
+# tasks file for install-apache-mod
+  - name: install apache module {{ module_name }}
+    zypper: name="{{item}}" state=present
+    with_items:
+      - apache2-mod_{{ module_name }}

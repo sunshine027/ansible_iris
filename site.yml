@@ -6,5 +6,6 @@
 - hosts: iris-webservers
   sudo: yes
   roles:
+    - { role: install-apache-mod, module_name: wsgi }
     - { role: apache-mod, module_name: wsgi }
     - iris-web
