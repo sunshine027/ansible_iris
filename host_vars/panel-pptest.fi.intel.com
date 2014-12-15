@@ -19,7 +19,10 @@ user: iris
 log_path: /var/log/iris
 
 iris_product_mapping: (('Tizen:Common', 'http://download.tizen.org/snapshots/tizen/common/latest/'),
-    ('Tizen:IVI', 'http://download.tizen.org/snapshots/tizen/ivi/ivi/latest/'))
+    ('Tizen:IVI', 'http://download.tizen.org/snapshots/tizen/ivi/latest/'),
+    ('Tizen:Mobile', 'http://download.tizen.org/snapshots/tizen/mobile/latest/'),
+    ('Tizen:Wearable', 'http://download.tizen.org/snapshots/tizen/wearable/latest/'),
+    ('Tizen:TV', 'http://download.tizen.org/snapshots/tizen/tv/latest/'))
 
 email_host: mail1.vlan103.tizen.org
 server_email: noreply@panel.tizen.org
