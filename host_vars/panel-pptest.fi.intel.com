@@ -8,7 +8,8 @@ web_host: localhost
 
 port: 8000
 server_name: panel-pptest.fi.intel.com
-repo: http://download.otctools.jf.intel.com/IRIS:/Devel/openSUSE_13.1/
+iris_version: 0.2.2
+repo: http://download.tizen.org/iris/archive/{{iris_version}}/openSUSE_13.1/
 db_host: localhost
 db_name: testdb
 db_user: testdbuser

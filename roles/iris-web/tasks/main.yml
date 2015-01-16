@@ -10,11 +10,7 @@
   command: zypper ref
 
 - name: Install IRIS packages
-  zypper: name="{{item}}" state=latest disable_gpg_check=yes
-  with_items:
-    - iris-core
-    - iris-packagedb
-    - iris-submissions
+  command: zypper -n --no-gpg-checks install -f iris-core={{iris_version}} iris-packagedb={{iris_version}} iris-submissions={{iris_version}}
   notify: restart apache
 
 - template: src=iris.conf.j2 dest=/etc/iris/iris.conf
