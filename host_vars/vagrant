@@ -10,7 +10,7 @@ web_host: localhost
 # Vars for role iris-web
 port: 8000
 server_name: openSUSE_131_64
-iris_version: 0.2.2
+iris_version: 0.2.3
 repo: http://download.tizen.org/iris/archive/{{iris_version}}/openSUSE_13.1/
 db_host: localhost
 cache_table: iris_views_cache
