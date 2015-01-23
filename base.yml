@@ -4,7 +4,5 @@
   sudo: yes
   roles:
     # config proxy should be the first thing
-    - sysconfig-proxy
     - python-xml
     - mysql-server
-    - socks-proxy

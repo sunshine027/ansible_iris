@@ -11,7 +11,7 @@ web_host: localhost
 port: 8000
 server_name: openSUSE_131_64
 iris_version: 0.2.3
-repo: http://download.tizen.org/iris/archive/{{iris_version}}/openSUSE_13.1/
+repo: http://download.otctools.jf.intel.com/staging/iris/archive/{{iris_version}}/openSUSE_13.1/
 db_host: localhost
 cache_table: iris_views_cache
 # The following three vars are identical with corresponding values
