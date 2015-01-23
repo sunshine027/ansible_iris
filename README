@@ -5,7 +5,6 @@ It assume that services such as apache and mysql already setup and config well.
 
 This playbook uses common roles from infrastructure/ansible/roles repository:
 - apache-mod: to enable mod_wsgi apache module
-- jenkins-server
 
 There are also 2 local iris-specific roles defined:
 - iris-db: assume iris database is created and proper user exists
@@ -14,8 +13,11 @@ There are also 2 local iris-specific roles defined:
 Host names, passwords and other non-public data is in separate repos under
 infrastructure/ansible/private/ with restricted access.
 
-File "vagrant" contains hosts definition for testing. It's a vm managered by
-vagrant. File "pptest" contains hosts definition for staging servers.
+Vagrantfile defines a vm managed by vagrant for testing. It use Ansible
+for provision, so when "vagrant up" you will get iris installed inside
+that vm.
+
+File "pptest" contains hosts definition for staging servers.
 
 Playbook base.yml is used only for testing, since in testing environment, we
 can't just assume mysql, apache are already setup, we have to setup them
