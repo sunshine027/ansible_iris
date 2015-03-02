@@ -1,4 +1,7 @@
 ---
+- group: name={{sys_group}} system=yes
+- user: name={{sys_user}} group={{sys_group}} home={{sys_user_home}} system=yes
+
 # Using this step to updating IRIS repository. Remove old repo file and add it again which with new repository.
 - name: Remove package repository
   zypper_repository: name=Tools_IRIS state=absent
@@ -38,6 +41,6 @@
      mode=0644 owner=root group=root
   notify: restart apache
 
-- file: path="{{log_path}}" owner="{{user}}" group=iris mode=0755 state="directory"
+- file: path="{{log_path}}" owner="{{sys_user}}" group=iris mode=0755 state="directory"
 
-- cron: name="update iris data" user="{{user}}" hour="10,14" minute="0" job="/usr/bin/update_iris_data.sh >> {{log_path}}/iris_update.log 2>&1"
+- cron: name="update iris data" user="{{sys_user}}" hour="10,14" minute="0" job="/usr/bin/update_iris_data.sh >> {{log_path}}/iris_update.log 2>&1"

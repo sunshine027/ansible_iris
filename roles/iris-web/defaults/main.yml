@@ -1,0 +1,5 @@
+---
+# system user/group for files owners and cron jobs
+sys_user: iris
+sys_group: iris
+sys_user_home: /srv/www/{{sys_user}}
