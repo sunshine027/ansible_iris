@@ -6,23 +6,23 @@
 - name: make require pathes
   file: path="{{item}}" owner={{sys_user}} group={{sys_group}} state=directory
   with_items:
-  - "{{static_root}}"
-  - "{{media_root}}"
-  - "{{log_path}}"
-  - "{{etc_path}}"
+    - "{{static_root}}"
+    - "{{media_root}}"
+    - "{{log_path}}"
+    - "{{etc_path}}"
 
-# Using this step to updating IRIS repository. Remove old repo file and add it again which with new repository.
-- name: Remove package repository
-  zypper_repository: name=Tools_IRIS state=absent
-
-- name: Add package repository
-  zypper_repository: name=Tools_IRIS repo={{repo}} state=present disable_gpg_check=yes
-
-- name: Refresh package repository
-  command: zypper ref
+- zypper: state=present name="{{item}}"
+  with_items:
+    - python-pip
+    - python-devel
+    - openldap2-devel
+    - cyrus-sasl-devel
+    - libopenssl-devel
+    - libxml2-devel
+    - libxslt-devel
 
 - name: Install IRIS packages
-  command: zypper -n --no-gpg-checks install -f iris-core={{iris_version}} iris-packagedb={{iris_version}} iris-submissions={{iris_version}}
+  pip: name={{iris_package}}
   notify: restart apache
 
 - template: src=iris.conf.j2 dest=/etc/iris/iris.conf
@@ -37,8 +37,9 @@
 
 - django_manage: command="{{item}}" app_path="{{iris_path.stdout}}"
   with_items:
-  - syncdb
-  - migrate
+    - collectstatic
+    - syncdb
+    - migrate
 
 - name: Create django cache table
   django_manage: command=createcachetable cache_table={{cache_table}} app_path="{{iris_path.stdout}}"
