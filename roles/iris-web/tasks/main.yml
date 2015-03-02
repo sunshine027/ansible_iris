@@ -1,6 +1,15 @@
 ---
 - group: name={{sys_group}} system=yes
+
 - user: name={{sys_user}} group={{sys_group}} home={{sys_user_home}} system=yes
+
+- name: make require pathes
+  file: path="{{item}}" owner={{sys_user}} group={{sys_group}} state=directory
+  with_items:
+  - "{{static_root}}"
+  - "{{media_root}}"
+  - "{{log_path}}"
+  - "{{etc_path}}"
 
 # Using this step to updating IRIS repository. Remove old repo file and add it again which with new repository.
 - name: Remove package repository
@@ -40,7 +49,5 @@
 - template: src=listen.conf.j2 dest=/etc/apache2/listen.conf
      mode=0644 owner=root group=root
   notify: restart apache
-
-- file: path="{{log_path}}" owner="{{sys_user}}" group=iris mode=0755 state="directory"
 
 - cron: name="update iris data" user="{{sys_user}}" hour="10,14" minute="0" job="/usr/bin/update_iris_data.sh >> {{log_path}}/iris_update.log 2>&1"

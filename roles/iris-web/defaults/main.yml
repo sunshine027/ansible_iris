@@ -3,3 +3,9 @@
 sys_user: iris
 sys_group: iris
 sys_user_home: /srv/www/{{sys_user}}
+
+# required pathes
+static_root: /srv/www/iris/static
+media_root: /srv/www/iris/media
+log_path: /var/log/iris
+etc_path: /etc/iris

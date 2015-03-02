@@ -16,8 +16,6 @@ db_user: testdbuser
 db_user_password: testdbuserpassword
 cache_table: iris_views_cache
 
-log_path: /var/log/iris
-
 iris_product_mapping: (('Tizen:Common', 'http://download.tizen.org/snapshots/tizen/common/latest/'),
     ('Tizen:IVI', 'http://download.tizen.org/snapshots/tizen/ivi/latest/'),
     ('Tizen:Mobile', 'http://download.tizen.org/snapshots/tizen/mobile/latest/'),
