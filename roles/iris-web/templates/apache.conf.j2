@@ -10,10 +10,10 @@
 
 <VirtualHost *:{{port}}>
     ServerName {{server_name}}
-    DocumentRoot /srv/www/iris/
+    DocumentRoot {{iris_root}}
 
-    WSGIScriptAlias / /srv/www/iris/wsgi.py
-    WSGIDaemonProcess {{server_name}} user=iris group=iris processes=2 threads=4
+    WSGIScriptAlias / {{iris_root}}/wsgi.py
+    WSGIDaemonProcess {{server_name}} user={{sys_user}} group={{sys_group}} processes=2 threads=4
     WSGIProcessGroup {{server_name}}
 
     LogLevel warn
@@ -21,10 +21,10 @@
     CustomLog /var/log/apache2/iris.log combined_with_time
     ErrorLog /var/log/apache2/iris-error.log
 
-    Alias /media /srv/www/iris/media
-    Alias /static /srv/www/iris/static
+    Alias /media {{media_root}}
+    Alias /static {{static_root}}
 
-    <Directory /srv/www/iris>
+    <Directory {{iris_root}}>
         Order deny,allow
         Allow from all
     </Directory>
