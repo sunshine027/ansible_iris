@@ -25,9 +25,18 @@
   pip: name={{iris_package}}
   notify: restart apache
 
-- template: src=iris.conf.j2 dest=/etc/iris/iris.conf
-    owner=iris group=iris
+- template: src=iris.conf.j2 dest={{etc_path}}/iris.conf
+    owner={{sys_user}} group={{sys_group}}
   notify: restart apache
+
+- name: generate django secret key
+  shell: generate_django_secret_key.py > {{etc_path}}/secret.txt
+  args:
+    creates: "{{etc_path}}/secret.txt"
+  notify: restart apache
+
+- file: path={{etc_path}}/secret.txt state=file
+    owner={{sys_user}} group={{sys_group}} mode=400
 
 # this will never report 'changed' status
 - name: Find IRIS path
